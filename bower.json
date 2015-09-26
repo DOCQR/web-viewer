@@ -1,0 +1,22 @@
+{
+  "name": "web-viewer",
+  "version": "1.0.0",
+  "authors": [
+    "DOCQR"
+  ],
+  "description": "web viewer for revit files",
+  "main": "client/index.html",
+  "keywords": [
+    "architecture",
+    "energineering",
+    "construction"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

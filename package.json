@@ -1,0 +1,24 @@
+{
+  "name": "web-viewer",
+  "version": "1.0.0",
+  "description": "Web viewer for revit files (qr code links)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docqr/web-viewer"
+  },
+  "keywords": [
+    "architecture",
+    "energinering",
+    "construction"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/docqr/web-viewer/issues"
+  },
+  "homepage": "https://github.com/docqr/web-viewer"
+}
