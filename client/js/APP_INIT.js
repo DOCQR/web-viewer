@@ -42,7 +42,7 @@ $(document).ready(function(){
             //call the UI / functionality modules
             app.userInterface();
             //app.openLocalFiles();
-            app.sceneUI();
+            //app.sceneUI();
             //app.lightingUI();
             //app.viewAndSelectionUI();
             //app.viewsUI();

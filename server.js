@@ -36,5 +36,9 @@ app.get('/', function(req, res) {
   res.render('index.html');
 });
 
+app.get('/viewer', function (req, res) {
+    res.render('spectaclesViewer.html');
+});
+
 //Start Server
 server.listen(3000);
