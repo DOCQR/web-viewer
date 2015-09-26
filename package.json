@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,13 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.0",
     "connect-multiparty": "^2.0.0",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-jwt": "^3.1.0",
     "jsonwebtoken": "^5.0.5",
+    "mongoose": "^4.1.8",
     "morgan": "^1.6.1",
-    "multer": "^1.0.5"
+    "multer": "^1.0.5",
+    "rethinkdb": "^2.1.1"
   }
 }

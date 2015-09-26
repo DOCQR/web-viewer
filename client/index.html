@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app="docqr">
+  <head>
+<!-- CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
+<!-- Core Components -->
+    <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Angular Components -->
+    <script src="app.js" type="text/javascript"></script>
+    <script src="controllers/navController.js" type="text/javascript"></script>
+    <script src="controllers/authController.js" type="text/javascript"></script>
+    <script src="services/authInterceptor.js" type="text/javascript"></script>
+    <script src="services/userService.js" type="text/javascript"></script>
+
+  </head>
+  <body >
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="navController">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">{{title}}</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li dropdown ng-show="user.isAuth" on-toggle="toggled(open)">
+
+              <a dropdown-toggle href id="simple-dropdown">
+                {{user.name}}
+              </a>
+              <ul aria-labelledby="simple-dropdown" class="dropdown-menu">
+                <li>
+                  <a href>
+                    <span aria-hidden="true" class="glyphicon glyphicon-user"></span>
+                    Account</a>
+                </li>
+                <li>
+                  <a href ng-click="user.logout()">
+                    <span aria-hidden="true" class="glyphicon glyphicon-log-out"></span>
+                    Sign Out</a>
+                </li>
+              </ul>
+
+            </li>
+            <li ng-hide="user.isAuth">
+              <a ui-sref="signin">Sign In</a>
+            </li>
+            <li ng-hide="user.isAuth">
+              <a ui-sref="signup">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div ui-view></div>
+    </div>
+
+    {{title}}
+
+  </body>
+</html>
