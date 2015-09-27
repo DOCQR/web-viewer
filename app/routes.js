@@ -14,6 +14,13 @@ module.exports = function(app, passport) {
     
   });
 
+    // WEB VIEWER =============================
+  app.get('/viewer', isLoggedIn, function (req, res) {
+      res.render('spectaclesviewer.html', {
+          user: req.user
+      });
+  });
+
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
