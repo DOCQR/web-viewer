@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
 <head>
-    <title>docqr</title>    
+    <title>DOCQR</title>    
     <!-- local refs to libs for development.  We should pull them from their respective servers in production -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/libs/dat.gui.js"></script>
     <link rel="stylesheet" type="text/css" href="css/datgui_styleOverride.css">
     <script type="text/javascript" src="js/libs/three.js"></script>
@@ -14,11 +15,98 @@
     <!-- Application files -->
     <link rel='stylesheet' type='text/css' href='css/SPECTACLES.css' />
     <script type="text/javascript" src="js/SPECTACLES.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css" >
    
 </head>
 <body>
+      <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">DOCQR</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-navbar">
+        <ul class="nav navbar-nav">
+          <li><div class="slash">/</div></li>
+          <li><a href="projects">Projects</a></li>
+          <li><div class="slash">/</div></li>
+          <li><div class="slash">Building</div></li>
+
+        </ul>
+
+        <%if (user) { %>
+         <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown" id="menuLogin">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+                <%= user.local.email %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+
+            </li>
+
+          </ul>
+
+       <% } else { %>
+            <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown" id="menuLogin">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Sign Up</a>
+              <div class="dropdown-menu" style="padding:17px;">
+                <form class="form" id="formLogin" action="/signup" method="post">
+                  <div class="form-group" style="min-width:250px">
+                    <input type="name" class="form-control" id="name" name="name" placeholder="Name">
+                  </div>
+                  <div class="form-group" style="min-width:250px">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                  </div>
+                  <div class="form-group" style="min-width:250px">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block">Sign Up</button>
+
+                </form>
+              </div>
+            </li>
+
+            <li class="dropdown" id="menuSignup">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Sign In</a>
+              <div class="dropdown-menu" style="padding:17px;">
+                <form class="form" id="formSignup" action="/login" method="post">
+                  <div class="form-group" style="min-width:250px">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                  </div>
+                  <div class="form-group" style="min-width:250px">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" name="password">
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block">Sign In</button>
+
+                </form>
+              </div>
+            </li>
+
+          </ul>
+
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+  
     <div id="Spectacles_output" style="position:fixed; top:0; left:0; width:100%; height:100%;"></div>
-     <script type="text/javascript" src="js/APP_INIT.js"></script>
+    
+    <script type="text/javascript" src="js/APP_INIT.js"></script>
     <script type="application/javascript">
         window.addEventListener('resize', function(){
             $("#Spectacles_output").css("height",window.innerHeight.toString());
@@ -26,6 +114,8 @@
             $("#Spectacles_output").resize();
         });
     </script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </body>
 </html>

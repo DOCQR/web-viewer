@@ -16,7 +16,7 @@ module.exports = function(app, passport) {
 
     // WEB VIEWER =============================
   app.get('/viewer', isLoggedIn, function (req, res) {
-      res.render('spectaclesviewer.html', {
+      res.render('spectaclesviewer.ejs', {
           user: req.user
       });
   });
