@@ -2,3 +2,5 @@ node_modules
 client/bower_components
 rethinkdb_data/
 Web.config
+
+*.log
