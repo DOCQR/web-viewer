@@ -24,8 +24,6 @@ module.exports = function(app, passport) {
   // WEB VIEWER =============================
   app.get('/viewer/:vid', isAuth, function(req, res) {
     View.findById(req.params.vid, function(err, view) {
-      console.log(err);
-      console.log(view);
       res.render('spectaclesviewer.ejs', {
         user: req.user,
         json: view.threed
