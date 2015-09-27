@@ -1,0 +1,162 @@
+<html>
+
+<head>
+  <title>DOCQR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View Building Construction Docs Online via QR Codes">
+
+  <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/readable/bootstrap.min.css" rel="stylesheet" integrity="sha256-xZf1oKvAz2ou2qhEduvwW4dDmGlmHADVup7mEqdKU6k= sha512-go0HHuJkbEVqGsIW4i045yNp9n/jCC5Dywtr9MmZ41n6h+tBhCLod4AvtLxrFp489K2KppmGbufl0iKnhMwcOQ==" crossorigin="anonymous">-->
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">DOCQR</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-navbar">
+        <ul class="nav navbar-nav">
+          <li><a href="/#team">Team</a></li>
+          <li><a href="https://github.com/docqr">Github</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+              <%= user.local.email %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="/projects">Projects</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+
+          </li>
+
+
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- /container -->
+  <hr>
+
+  <div class="container">
+    <div class="col-sm-6 col-sm-offset-3">
+      <br>
+      <br>
+
+      <%= user %>
+        <hr>
+        <%= projects %>
+          <ul>
+            <% for(var i=0; i<projects.length; i++) {%>
+              <li>
+                <%= projects[i].name %>
+              </li>
+              <% } %>
+          </ul>
+
+          <!--Signin Form-->
+          <form action="/user/signin" method="post">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="email" class="form-control" name="email">
+              <input type="text" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Chck user</button>
+          </form>
+
+          <!-- Add Project FORM -->
+          <form action="/addProject" method="post">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Add Project</button>
+          </form>
+
+          <!-- Add Users FORM -->
+          <form action="/addUser" method="post">
+            <div class="form-group">
+              <label>Project</label>
+              <select class="form-control" name="project">
+                <% for(var i=0; i<projects.length; i++) {%>
+                  <option value="<%= projects[i]._id %>">
+                    <%= projects[i].name %>
+                  </option>
+                  <% } %>
+                    </ul>
+              </select>
+              <label>User</label>
+              <input type="email" class="form-control" name="email" value="">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Add User</button>
+          </form>
+
+          <!-- new model id -->
+          <form action="/projects/56073ef125aac0da278061e5" method="get">
+            <div class="form-group">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Get Projects</button>
+          </form>
+          <!-- new model id -->
+          <form action="/newModelID/560797db5084546c1e76d435/" method="post">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Add Model ID</button>
+          </form>
+          <!-- add views -->
+          <form action="/views/560797db5084546c1e76d435/560798035084546c1e76d436/" method="post">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" name="threed">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Add View</utton>
+          </form>
+
+          <hr>
+
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-51163876-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</body>
+
+</html>

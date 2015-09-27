@@ -17,6 +17,9 @@ module.exports = function(app, passport) {
 
   });
 
+  app.get('/camera', function(req, res) {
+    res.render('camera.ejs');
+  });
 
   // WEB VIEWER =============================
   app.get('/viewer/:vid', isLoggedIn, function(req, res) {
