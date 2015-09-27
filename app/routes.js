@@ -164,9 +164,9 @@ module.exports = function(app, passport) {
   app.post('/views/:projectID/:modelID', isAuth, function(req, res) {
     console.log(req.params);
     // console.log(req.body);
-    console.log(req.body.jsonFile);
+    console.log(req.body);
     var newView = new View();
-    newView.threed = JSON.parse(req.body);
+    newView.threed = req.body;
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
