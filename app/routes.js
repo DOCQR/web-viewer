@@ -223,8 +223,9 @@ function isLoggedIn(req, res, next) {
 
 function isAuth(req, res, next) {
   // console.log(req);
-  if (req.isAuthenticated())
-    return next();
-
-  res.status(401);
+  return next();
+  // if (req.isAuthenticated())
+  //   return next();
+  //
+  // res.status(401);
 }
