@@ -28,25 +28,21 @@
 var mySpectacles;
 
 //fires when everything has loaded
-$(document).ready(function(){
 
-    //load our sample JSON file from disk
-    var sampleJson = "https://dl.dropboxusercontent.com/s/5biy6lv70k8s964/rac_basic_sample_project_LVL2.json";
-    //"./sampleModels/rst_basic_sample_project.json"
-    $.getJSON(sampleJson, function (data) {
+$(document).ready(function() {
+  var threed = <%-JSON.stringify(json) %>
+  //once loaded, initialize a Spectacles viewer by passing in the div to bind to, the json data, and a callback function
+  //where we can enable application functionality in nice clean chunks
+  mySpectacles = new SPECTACLES($("#Spectacles_output"), threed, function(app) {
 
-        //once loaded, initialize a Spectacles viewer by passing in the div to bind to, the json data, and a callback function
-        //where we can enable application functionality in nice clean chunks
-        mySpectacles = new SPECTACLES($("#Spectacles_output"), data, function(app){
+    //call the UI / functionality modules
+    app.userInterface();
+    //app.openLocalFiles();
+    //app.sceneUI();
+    //app.lightingUI();
+    //app.viewAndSelectionUI();
+    //app.viewsUI();
+    app.layersUI();
+  });
 
-            //call the UI / functionality modules
-            app.userInterface();
-            //app.openLocalFiles();
-            //app.sceneUI();
-            //app.lightingUI();
-            app.viewAndSelectionUI();
-            //app.viewsUI();
-            app.layersUI();
-        });
-    });
 });

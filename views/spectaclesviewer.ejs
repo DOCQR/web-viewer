@@ -1,29 +1,28 @@
 
 <html>
 <head>
-    <title>DOCQR</title>    
+    <title>DOCQR</title>
     <!-- local refs to libs for development.  We should pull them from their respective servers in production -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/libs/dat.gui.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/datgui_styleOverride.css">
-    <script type="text/javascript" src="js/libs/three.js"></script>
-    <script type="text/javascript" src="js/libs/OrbitControls.js"></script>
-    <script type="text/javascript" src="js/libs/Projector.js"></script>
-    <script type="text/javascript" src="js/libs/stats.js"></script>
-    <script type="text/javascript" src="js/libs/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/libs/dat.gui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/datgui_styleOverride.css">
+    <script type="text/javascript" src="../js/libs/three.js"></script>
+    <script type="text/javascript" src="../js/libs/OrbitControls.js"></script>
+    <script type="text/javascript" src="../js/libs/Projector.js"></script>
+    <script type="text/javascript" src="../js/libs/stats.js"></script>
+    <script type="text/javascript" src="../js/libs/jquery-ui.js"></script>
 
     <!-- Application files -->
-    <link rel='stylesheet' type='text/css' href='css/SPECTACLES.css' />
-    <script type="text/javascript" src="js/SPECTACLES.js"></script>
-    
-    <link rel="stylesheet" href="css/style.css" >
-   
+    <link rel='stylesheet' type='text/css' href='../css/SPECTACLES.css' />
+    <script type="text/javascript" src="../js/SPECTACLES.js"></script>
+
+    <link rel="stylesheet" href="../css/style.css" >
+
 </head>
 <body>
       <!-- Fixed navbar -->
   <div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-
       <div class="navbar-header">
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
 
@@ -37,7 +36,7 @@
       <div class="collapse navbar-collapse" id="bs-navbar">
         <ul class="nav navbar-nav">
           <li><div class="slash">/</div></li>
-          <li><a href="projects">Projects</a></li>
+          <li><a href="/projects">Projects</a></li>
           <li><div class="slash">/</div></li>
           <li><div class="slash">Building</div></li>
 
@@ -103,10 +102,23 @@
       </div>
     </div>
   </div>
-  
+
     <div id="Spectacles_output" style="position:fixed; top:0; left:0; width:100%; height:100%;"></div>
-    
-    <script type="text/javascript" src="js/APP_INIT.js"></script>
+
+    <script type="text/javascript">
+    var threed = <%-JSON.stringify(json) %>
+    mySpectacles = new SPECTACLES($("#Spectacles_output"), threed, function(app) {
+
+      //call the UI / functionality modules
+      app.userInterface();
+      //app.openLocalFiles();
+      //app.sceneUI();
+      //app.lightingUI();
+      //app.viewAndSelectionUI();
+      //app.viewsUI();
+      app.layersUI();
+    });
+    </script>
     <script type="application/javascript">
         window.addEventListener('resize', function(){
             $("#Spectacles_output").css("height",window.innerHeight.toString());
@@ -114,7 +126,7 @@
             $("#Spectacles_output").resize();
         });
     </script>
-    
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </body>
