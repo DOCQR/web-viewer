@@ -164,19 +164,19 @@ module.exports = function(app, passport) {
   app.post('/views/:projectID/:modelID', isAuth, function(req, res) {
     console.log(req.params);
     // console.log(req.body);
+    console.log(req.body.jsonFile);
     var newView = new View();
     newView.threed = req.body.jsonFile;
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
-        Project.findOne({
-          '_id': req.params.projectID
-        }, function(err, project) {
-          res.json(newView._id);
-        })
-
-      })
-      // console.log(newView);
+      Project.findOne({
+        '_id': req.params.projectID
+      }, function(err, project) {
+        res.json(newView._id);
+      });
+    });
+    // console.log(newView);
 
     Project.findOneAndUpdate({
       // '_id': req.params.projectID,
