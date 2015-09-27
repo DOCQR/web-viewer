@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
   });
 
   // WEB VIEWER =============================
-  app.get('/viewer/:vid', isLoggedIn, function(req, res) {
+  app.get('/viewer/:vid', isAuth, function(req, res) {
     View.findById(req.params.vid, function(err, view) {
       console.log(err);
       console.log(view);
