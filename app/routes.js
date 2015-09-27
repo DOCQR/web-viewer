@@ -165,7 +165,7 @@ module.exports = function(app, passport) {
     console.log(req.params);
     // console.log(req.body);
     var newView = new View();
-    newView.threed = req.body;
+    newView.threed = req.body.threed;
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
