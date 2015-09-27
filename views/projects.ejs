@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #e0e0e0;">
 
   <!-- Fixed navbar -->
   <div class="navbar navbar-default navbar-fixed-top">
@@ -23,12 +23,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">DOCQR</a>
+        <a class="navbar-brand" href="/">DOCQR</a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-navbar">
         <ul class="nav navbar-nav">
-          <li><a href="/#team">Team</a></li>
+          <li class="active"><a href="projects">Projects</a></li>
           <li><a href="https://github.com/docqr">Github</a></li>
 
         </ul>
@@ -40,7 +40,6 @@
               <%= user.local.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="/projects">Projects</a></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
 
@@ -53,8 +52,103 @@
     </div>
   </div>
 
-  <!-- /container -->
-  <hr>
+   <div class="row-fluid tagline projects" style="padding-top:100px;">
+    
+	   <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="//placehold.it/450X300/DD3333/EE3333" class="img-responsive"></div>
+          <div class="panel-body">
+            <p class="lead">Building 1</p>
+            <p>Users</p>
+            
+            <div>
+              
+              <img src="http://api.randomuser.me/portraits/med/men/20.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/21.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/14.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
+
+               <span class="dropup pull-right" >
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.27
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.26</a></li>
+                </ul>
+              </span>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+      	<div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="//placehold.it/450X300/DD66DD/EE77EE" class="img-responsive"></div>
+          <div class="panel-body">
+            <p class="lead">Building 2</p>
+            <p>Users</p>
+            
+            <div>
+              <img src="http://api.randomuser.me/portraits/med/men/4.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/24.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
+
+              <span class="dropup pull-right" >
+                
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.27
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.25</a></li>
+                  <li><a href="#">2015.9.26</a></li>
+                </ul>
+                
+              </span>
+              
+            </div>
+          </div>
+        </div>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+      	<div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="//placehold.it/450X300/2222DD/2222EE" class="img-responsive"></div>
+          <div class="panel-body">
+            <p class="lead">Building 3</p>
+            <p>Users</p>
+            
+            <div>
+              <img src="http://api.randomuser.me/portraits/med/women/4.jpg" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/4.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
+
+              <span class="dropup pull-right" >
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.27
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.26</a></li>
+                </ul>
+              </span>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+      
+       <div class="col-sm-4 col-xs-6">
+      	<div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="//placehold.it/450X300?text=%2B" class="img-responsive"></div>
+          <div class="panel-body">
+            <p class="lead">New Building</p>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+     
+     
+    </div>
+   
 
   <div class="container">
     <div class="col-sm-6 col-sm-offset-3">
@@ -71,6 +165,7 @@
               </li>
               <% } %>
           </ul>
+          
 
           <!--Signin Form-->
           <form action="/user/signin" method="post">
