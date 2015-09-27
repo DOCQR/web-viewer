@@ -48,6 +48,7 @@
     background-color: #e8e8e8;
     font-size: 13px;
     padding: 5px 2px;
+    top:65;
 }
 
 .Spectacles_openFile {
@@ -97,9 +98,10 @@
 }
 
 .Spectacles_uiTarget {
-    position: fixed;
-    width: 300px;
+    position: absolute;
+    width: 500px;
     z-index: 10;
+    top: 65px;
 }
 
 .Spectacles_Header {

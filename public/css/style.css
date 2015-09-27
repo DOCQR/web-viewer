@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+
 /* CUSTOM Styles*/
 
 .slash{
@@ -6,7 +8,6 @@
 }
 
 /* BOOTSWATCH Styles*/
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
 html
 {
 	font-family: sans-serif;
