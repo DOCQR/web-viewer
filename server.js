@@ -1,44 +1,43 @@
-var express = require('express'),
-  app = express(),
-  http = require('http'),
-  morgan = require('morgan'),
-  bodyParser = require('body-parser'),
-  fs = require('fs'),
-  jwt = require('jsonwebtoken'),
-  expressJwt = require('express-jwt'),
-  rethinkdb = require('rethinkdb'),
-  multiparty = require('connect-multiparty'),
-  multipartyMiddleware = multiparty();
+// server.js
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function(req, res) {
-  res.send('hello world');
-});
+// set up ======================================================================
+// get all the tools we need
+var express  = require('express');
+var app      = express();
+var port     = process.env.PORT || 8080;
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
 
-//Initialize Express
-var app = express();
-var server = http.Server(app);
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
 
-//Express App Settings
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-//Express Settings
-app.use(bodyParser.json());
-app.use(morgan('dev'));
-app.engine('html', require('ejs').renderFile);
-app.set('views', __dirname + '/client/views');
-app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/client'));
+var configDB = require('./config/database.js');
 
-//Routes
-app.get('/', function(req, res) {
-  res.render('index.html');
-});
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
 
-app.get('/viewer', function (req, res) {
-    res.render('spectaclesViewer.html');
-});
+require('./config/passport')(passport); // pass passport for configuration
 
-//Start Server
-server.listen(3000);
+// set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser.json()); // get information from html forms
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs'); // set up ejs for templating
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+// routes ======================================================================
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+// launch ======================================================================
+app.listen(port);
+console.log('The magic happens on port ' + port);
