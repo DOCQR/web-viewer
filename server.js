@@ -13,8 +13,6 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var getRawBody = require('raw-body');
-var typer = require('media-typer');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -33,17 +31,17 @@ app.use(bodyParser.urlencoded({
   limit: '200mb',
   extended: true
 }));
-app.use(function(req, res, next) {
-  getRawBody(req, {
-    length: req.headers['content-length'],
-    limit: '200mb',
-    encoding: typer.parse(req.headers['content-type']).parameters.charset
-  }, function(err, string) {
-    if (err) return next(err)
-    req.text = string
-    next()
-  })
-})
+// app.use(function(req, res, next) {
+//   getRawBody(req, {
+//     length: req.headers['content-length'],
+//     limit: '200mb',
+//     encoding: typer.parse(req.headers['content-type']).parameters.charset
+//   }, function(err, string) {
+//     if (err) return next(err)
+//     req.text = string
+//     next()
+//   })
+// })
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
