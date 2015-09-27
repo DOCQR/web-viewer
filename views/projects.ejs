@@ -72,6 +72,16 @@
               <% } %>
           </ul>
 
+          <!--Signin Form-->
+          <form action="/user/signin" method="get">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="email" class="form-control" name="email">
+              <input type="text" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Chck user</button>
+          </form>
+
           <!-- Add Project FORM -->
           <form action="/addProject" method="post">
             <div class="form-group">

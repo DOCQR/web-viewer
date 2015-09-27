@@ -56,6 +56,27 @@ module.exports = function(app, passport) {
     });
   });
 
+  // app.get('/user/signin', passport.authenticate('local-login', function(err, user, info) {
+  //
+  // }));
+  app.get('/user/signin', function(req, res, next) {
+    passport.authenticate('local-login', function(err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.redirect('/');
+      }
+      req.logIn(user, function(err) {
+        if (err) {
+          return next(err);
+        }
+        console.log(user);
+        return res.json(user);
+      });
+    })(req, res, next);
+  });
+
   // process the login form
   app.post('/login', passport.authenticate('local-login', {
     successRedirect: '/projects', // redirect to the secure profile section
@@ -188,10 +209,6 @@ module.exports = function(app, passport) {
       res.json(newModel._id);
     });
   });
-
-
-
-
 };
 
 // route middleware to ensure user is logged in
