@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
   });
 
   // WEB VIEWER =============================
-  app.get('/viewer/:vid', isLoggedIn, function(req, res) {
+  app.get('/viewer/:vid', isAuth, function(req, res) {
     View.findById(req.params.vid, function(err, view) {
       console.log(err);
       console.log(view);
@@ -165,29 +165,17 @@ module.exports = function(app, passport) {
     console.log(req.params);
     // console.log(req.body);
     var newView = new View();
-    newView.threed = req.body.jsonFile;
+    newView.threed = req.body;
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
         Project.findOne({
           '_id': req.params.projectID
         }, function(err, project) {
+          console.log("New View ",newView._id);
           res.json(newView._id);
-        })
-
-      })
-      // console.log(newView);
-
-    Project.findOneAndUpdate({
-      // '_id': req.params.projectID,
-      'models._id': req.params.modelID
-    }, {
-      $push: {
-        'views': newView
-      }
-    }, function(err, project) {
-      console.log(project);
-    });
+        });
+      });
   });
 
   app.post('/newModelID/:projectID', isAuth, function(req, res) {
