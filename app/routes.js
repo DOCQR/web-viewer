@@ -163,7 +163,7 @@ module.exports = function(app, passport) {
 
   app.post('/views/:projectID/:modelID', isAuth, function(req, res) {
     console.log(req.params);
-    var threed = req.body.threed;
+    var threed = req.body;
     fs.writeFileSync(Date.now() + '.json', JSON.stringify(threed));
     var newView = new View();
     newView.threed = threed;
