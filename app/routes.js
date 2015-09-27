@@ -173,21 +173,10 @@ module.exports = function(app, passport) {
       Project.findOne({
         '_id': req.params.projectID
       }, function(err, project) {
+        console.log(newView._id);
         res.json(newView._id);
       });
     });
-    // console.log(newView);
-    //
-    // Project.findOneAndUpdate({
-    //   // '_id': req.params.projectID,
-    //   'models._id': req.params.modelID
-    // }, {
-    //   $push: {
-    //     'views': newView
-    //   }
-    // }, function(err, project) {
-    //   console.log(project);
-    // });
   });
 
   app.post('/newModelID/:projectID', isAuth, function(req, res) {
@@ -206,7 +195,7 @@ module.exports = function(app, passport) {
       }
     }, function(err, project) {
 
-      console.log("new View ID", newModel._id);
+      console.log("new Model ID", newModel._id);
       res.json(newModel._id);
     });
   });
