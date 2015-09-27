@@ -106,7 +106,7 @@
     <div id="Spectacles_output" style="position:fixed; top:0; left:0; width:100%; height:100%;"></div>
 
     <script type="text/javascript">
-    var threed = <%-JSON.stringify(json) %>
+    var threed = <%-json %>;
     mySpectacles = new SPECTACLES($("#Spectacles_output"), threed, function(app) {
 
       //call the UI / functionality modules

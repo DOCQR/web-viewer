@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var viewSchema = mongoose.Schema({
-  threed: Object,
+  threed: String,
   model: String,
   project: String,
 });
