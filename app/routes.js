@@ -169,13 +169,15 @@ module.exports = function(app, passport) {
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
-        Project.findOne({
-          '_id': req.params.projectID
-        }, function(err, project) {
-          console.log("New View ",newView._id);
-          res.json(newView._id);
-        });
-      });
+      console.log("New View ", newView._id);
+      res.json(newView._id);
+      // Project.findOne({
+      //   '_id': req.params.projectID
+      // }, function(err, project) {
+      //   console.log("New View ",newView._id);
+      //   res.json(newView._id);
+      // });
+    });
   });
 
   app.post('/newModelID/:projectID', isAuth, function(req, res) {
