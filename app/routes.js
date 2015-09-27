@@ -116,7 +116,7 @@ module.exports = function(app, passport) {
 
   app.get('/projects/:user', isAuth, function(req, res) {
     Project.find({
-      'users': req.user._id
+      'users': req.params.user
     }, function(err, projects) {
       console.log(projects);
       var p = [];
@@ -220,7 +220,6 @@ function isLoggedIn(req, res, next) {
 
 function isAuth(req, res, next) {
   // console.log(req);
-
   if (req.isAuthenticated())
     return next();
 
