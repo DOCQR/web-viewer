@@ -1,6 +1,8 @@
 var Project = require('./models/project.js').Project;
 var Model = require('./models/project.js').Model;
+var View = require('./models/project.js').View;
 var User = require('./models/user.js');
+var _ = require('lodash');
 module.exports = function(app, passport) {
 
   // normal routes ===============================================================
@@ -14,11 +16,18 @@ module.exports = function(app, passport) {
 
   });
 
-    // WEB VIEWER =============================
-  app.get('/viewer', isLoggedIn, function (req, res) {
+
+  // WEB VIEWER =============================
+  app.get('/viewer/:vid', isLoggedIn, function(req, res) {
+    View.findById(req.params.vid, function(err, view) {
+      console.log(err);
+      console.log(view);
       res.render('spectaclesviewer.ejs', {
-          user: req.user
+        user: req.user,
+        json: view.threed
       });
+    })
+
   });
 
   // PROFILE SECTION =========================
@@ -85,13 +94,17 @@ module.exports = function(app, passport) {
 
   app.get('/projects/:user', isLoggedIn, function(req, res) {
     Project.find({
-      'users': req.params.user
+      'users': req.user._id
     }, function(err, projects) {
       console.log(projects);
       var p = [];
       for (var i = 0; i < projects.length; i++) {
-        p.push(projects[i].name);
+        p.push({
+          'name': projects[i].name,
+          'id': projects[i]._id
+        });
       }
+      res.json(p);
     });
   });
 
@@ -122,15 +135,68 @@ module.exports = function(app, passport) {
 
   });
 
-  app.post('/model', isLoggedIn, function(req, res){
+  app.post('/model', isLoggedIn, function(req, res) {
 
   });
+
+  app.post('/views/:projectID/:modelID', isLoggedIn, function(req, res) {
+    console.log(req.params);
+    // console.log(req.body);
+    var newView = new View();
+    newView.threed = req.body.threed;
+    newView.model = req.params.modelID;
+    newView.project = req.params.projectID;
+    newView.save(function(err) {
+        Project.findOne({
+          '_id': req.params.projectID
+        }, function(err, project) {
+          res.json(newView._id);
+        })
+
+      })
+      // console.log(newView);
+
+    Project.findOneAndUpdate({
+      // '_id': req.params.projectID,
+      'models._id': req.params.modelID
+    }, {
+      $push: {
+        'views': newView
+      }
+    }, function(err, project) {
+      console.log(project);
+    });
+  });
+
+  app.post('/newModelID/:projectID', isLoggedIn, function(req, res) {
+    console.log(req.params);
+    var newID = Date.now();
+    console.log(newID);
+    var newModel = new Model();
+    newModel.project = req.params.projectID;
+    newModel.version = newID;
+    Project.findByIdAndUpdate(req.params.projectID, {
+      $set: {
+        'currentVersion': newID
+      },
+      $push: {
+        'models': newModel
+      }
+    }, function(err, project) {
+
+      console.log("new View ID", newModel._id);
+      res.json(newModel._id);
+    });
+  });
+
+
 
 
 };
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
+  console.log(req);
   if (req.isAuthenticated())
     return next();
 
