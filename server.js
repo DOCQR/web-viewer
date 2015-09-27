@@ -24,13 +24,8 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 
-app.use(bodyParser.json({
-  limit: '200mb'
-}));
-app.use(bodyParser.urlencoded({
-  limit: '200mb',
-  extended: true
-}));
+bodyParser.json({ parameterLimit: 1000, limit: '200mb' });
+bodyParser.urlencoded({ extended: true, parameterLimit: 1000, limit: '200mb' });
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
