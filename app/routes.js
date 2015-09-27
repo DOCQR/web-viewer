@@ -164,7 +164,7 @@ module.exports = function(app, passport) {
   app.post('/views/:projectID/:modelID', isAuth, function(req, res) {
     console.log(req.params);
     // console.log(req.body);
-    console.log(req.body.jsonFile);
+    console.log(req.body);
     var newView = new View();
     newView.threed = req.body.jsonFile;
     newView.model = req.params.modelID;
@@ -177,17 +177,17 @@ module.exports = function(app, passport) {
       });
     });
     // console.log(newView);
-
-    Project.findOneAndUpdate({
-      // '_id': req.params.projectID,
-      'models._id': req.params.modelID
-    }, {
-      $push: {
-        'views': newView
-      }
-    }, function(err, project) {
-      console.log(project);
-    });
+    //
+    // Project.findOneAndUpdate({
+    //   // '_id': req.params.projectID,
+    //   'models._id': req.params.modelID
+    // }, {
+    //   $push: {
+    //     'views': newView
+    //   }
+    // }, function(err, project) {
+    //   console.log(project);
+    // });
   });
 
   app.post('/newModelID/:projectID', isAuth, function(req, res) {
