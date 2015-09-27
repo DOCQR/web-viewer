@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
   });
 
   // WEB VIEWER =============================
-  app.get('/viewer/:vid', isAuth, function(req, res) {
+  app.get('/viewer/:vid', isLoggedIn, function(req, res) {
     View.findById(req.params.vid, function(err, view) {
       console.log(err);
       console.log(view);
@@ -165,7 +165,6 @@ module.exports = function(app, passport) {
     console.log(req.params);
     // console.log(req.body);
     var newView = new View();
-    console.log(req.body);
     newView.threed = req.body;
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
