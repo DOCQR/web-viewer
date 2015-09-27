@@ -3,6 +3,7 @@ var Model = require('./models/project.js').Model;
 var View = require('./models/project.js').View;
 var User = require('./models/user.js');
 var _ = require('lodash');
+var fs = require('fs');
 module.exports = function(app, passport) {
 
   // normal routes ===============================================================
@@ -59,13 +60,13 @@ module.exports = function(app, passport) {
   // app.get('/user/signin', passport.authenticate('local-login', function(err, user, info) {
   //
   // }));
-  app.get('/user/signin', function(req, res, next) {
+  app.post('/user/signin', function(req, res, next) {
     passport.authenticate('local-login', function(err, user, info) {
       if (err) {
         return next(err);
       }
       if (!user) {
-        return res.redirect('/');
+        return res.status(401);
       }
       req.logIn(user, function(err) {
         if (err) {
@@ -102,7 +103,7 @@ module.exports = function(app, passport) {
 
   // Projects SECTION =========================
   app.get('/projects', isLoggedIn, function(req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     Project.find({
       'users': req.user._id
     }, function(err, projects) {
@@ -113,7 +114,7 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/projects/:user', isLoggedIn, function(req, res) {
+  app.get('/projects/:user', isAuth, function(req, res) {
     Project.find({
       'users': req.user._id
     }, function(err, projects) {
@@ -156,11 +157,8 @@ module.exports = function(app, passport) {
 
   });
 
-  app.post('/model', isLoggedIn, function(req, res) {
 
-  });
-
-  app.post('/views/:projectID/:modelID', isLoggedIn, function(req, res) {
+  app.post('/views/:projectID/:modelID', isAuth, function(req, res) {
     console.log(req.params);
     // console.log(req.body);
     var newView = new View();
@@ -189,7 +187,7 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.post('/newModelID/:projectID', isLoggedIn, function(req, res) {
+  app.post('/newModelID/:projectID', isAuth, function(req, res) {
     console.log(req.params);
     var newID = Date.now();
     console.log(newID);
@@ -213,9 +211,18 @@ module.exports = function(app, passport) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
-  console.log(req);
+  console.log(req.isAuthenticated);
   if (req.isAuthenticated())
     return next();
 
   res.redirect('/');
+}
+
+function isAuth(req, res, next) {
+  // console.log(req);
+
+  if (req.isAuthenticated())
+    return next();
+
+  res.status(401);
 }
