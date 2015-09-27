@@ -1,6 +1,6 @@
 var Project = require('./models/project.js').Project;
 var Model = require('./models/project.js').Model;
-var View = require('./models/project.js').View;
+var View = require('./models/view.js');
 var User = require('./models/user.js');
 var _ = require('lodash');
 var fs = require('fs');
@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
         user: req.user,
         json: view.threed
       });
-    })
+    });
 
   });
 
@@ -163,20 +163,15 @@ module.exports = function(app, passport) {
 
   app.post('/views/:projectID/:modelID', isAuth, function(req, res) {
     console.log(req.params);
-    console.log(req.body);
+    var threed = req.body.threed;
+    fs.writeFileSync(Date.now() + '.json', JSON.stringify(threed));
     var newView = new View();
-    newView.threed = req.body;
+    newView.threed = threed;
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
       console.log("New View ", newView._id);
       res.json(newView._id);
-      // Project.findOne({
-      //   '_id': req.params.projectID
-      // }, function(err, project) {
-      //   console.log("New View ",newView._id);
-      //   res.json(newView._id);
-      // });
     });
   });
 

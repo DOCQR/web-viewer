@@ -5,6 +5,7 @@ var viewSchema = mongoose.Schema({
   model: String,
   project: String,
 });
+
 var modelSchema = mongoose.Schema({
   project: String,
   version: String,
@@ -23,6 +24,5 @@ var projectSchema = mongoose.Schema({
 // create the model for users and expose it to our app
 module.exports = {
   Project: mongoose.model('Project', projectSchema),
-  Model: mongoose.model('Model', modelSchema),
-  View: mongoose.model('View', viewSchema),
+  Model: mongoose.model('Model', modelSchema)
 };
