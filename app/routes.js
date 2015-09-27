@@ -1,4 +1,7 @@
-var Project = require('./models/project.js');
+var Project = require('./models/project.js').Project;
+var Models = require('./models/project.js').Models;
+var Model = require('./models/project.js').Model;
+var User = require('./models/user.js');
 module.exports = function(app, passport) {
 
   // normal routes ===============================================================
@@ -36,8 +39,8 @@ module.exports = function(app, passport) {
 
   // process the login form
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/profile', // redirect to the secure profile section
-    failureRedirect: '/login', // redirect back to the signup page if there is an error
+    successRedirect: '/projects', // redirect to the secure profile section
+    failureRedirect: '/', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
@@ -52,7 +55,7 @@ module.exports = function(app, passport) {
   // process the signup form
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/projects', // redirect to the secure profile section
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
+    failureRedirect: '/', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
@@ -60,24 +63,56 @@ module.exports = function(app, passport) {
   // Projects SECTION =========================
   app.get('/projects', isLoggedIn, function(req, res) {
     console.log(req.user);
-    res.render('projects.ejs', {
-      projects: ['1', '2', '3'],
-      user: req.user
+    Project.find({
+      'users': req.user._id
+    }, function(err, projects) {
+      res.render('projects.ejs', {
+        projects: projects,
+        user: req.user
+      });
     });
   });
 
-  app.post('/projects', isLoggedIn, function(req, res) {
+  app.get('/projects/:user', isLoggedIn, function(req, res) {
+    Project.find({
+      'users': req.params.user
+    }, function(err, projects) {
+      console.log(projects);
+      var p = [];
+      for (var i = 0; i < projects.length; i++) {
+        p.push(projects[i].name);
+      }
+    });
+  });
+
+  app.post('/addProject', isLoggedIn, function(req, res) {
+    console.log("adding project", req.body);
     var newProject = new Project();
-    newProject.users.push(req.user.id);
+    newProject.users.push(req.user._id);
     newProject.name = req.body.name;
-    newBuilding.save(function(err) {
-      
-
-      res.render('project.ejs')
+    newProject.save(function(err) {
+      console.log("saved");
+      res.redirect('/projects');
     });
 
   });
-  app.post('/projectsAddUser', isLoggedIn, function(req, res) {
+  app.post('/addUser', isLoggedIn, function(req, res) {
+    console.log("adding User", req.body);
+    User.findOne({
+      'local.email': req.body.email
+    }, function(err, user) {
+      Project.findByIdAndUpdate(req.body.project, {
+        $push: {
+          'users': user._id
+        }
+      }, function(err, project) {
+        res.redirect('/projects');
+      });
+    });
+
+  });
+
+  app.post('/model', isLoggedIn, function(req, res){
 
   });
 

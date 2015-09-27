@@ -1,2 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="col-sm-6 col-sm-offset-3">
 <%= user._id %>
 <%= projects %>
+<ul>
+<% for(var i=0; i<projects.length; i++) {%>
+   <li><%= projects[i].name %></li>
+<% } %>
+</ul>
+
+    <!-- Add Project FORM -->
+    <form action="/addProject" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Add Project</button>
+    </form>
+
+    <!-- Add Users FORM -->
+    <form action="/addUser" method="post">
+        <div class="form-group">
+            <label>Project</label>
+            <select class="form-control" name="project">
+              <% for(var i=0; i<projects.length; i++) {%>
+                 <option value="<%= projects[i]._id %>"><%= projects[i].name %></option>
+              <% } %>
+              </ul>
+            </select>
+            <label>User</label>
+            <input type="email" class="form-control" name="email" value="">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Add User</button>
+    </form>
+
+    <hr>
+
+</div>
+</div>
+</body>
+</html>
