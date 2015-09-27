@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #e0e0e0;">
 
   <!-- Fixed navbar -->
   <div class="navbar navbar-default navbar-fixed-top">
@@ -23,12 +23,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">DOCQR</a>
+        <a class="navbar-brand" href="/">DOCQR</a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-navbar">
         <ul class="nav navbar-nav">
-          <li><a href="/#team">Team</a></li>
+          <li class="active"><a href="projects">Projects</a></li>
           <li><a href="https://github.com/docqr">Github</a></li>
 
         </ul>
@@ -40,7 +40,6 @@
               <%= user.local.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="/projects">Projects</a></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
 
@@ -53,88 +52,164 @@
     </div>
   </div>
 
-  <!-- /container -->
-  <hr>
+   <div class="row-fluid tagline projects" style="padding-top:100px;">
+    
+     <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="https://raw.githubusercontent.com/DOCQR/web-viewer/master/files/documentation/theater1.JPG" class="img-responsive" style="border: 1px solid #bfbfbf"></div>
+          <div class="panel-body">
+            <p class="lead">Theater Perspective</p>
+            <p>Users</p>
+            
+            <div>
+              
+              <img src="http://api.randomuser.me/portraits/med/men/21.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/14.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
 
-  <div class="container">
-    <div class="col-sm-6 col-sm-offset-3">
-      <br>
-      <br>
-
-      <%= user %>
-        <hr>
-        <%= projects %>
-          <ul>
-            <% for(var i=0; i<projects.length; i++) {%>
-              <li>
-                <%= projects[i].name %>
-              </li>
-              <% } %>
-          </ul>
-
-          <!--Signin Form-->
-          <form action="/user/signin" method="post">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="email" class="form-control" name="email">
-              <input type="text" class="form-control" name="password">
+               <span class="dropup pull-right" >
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.25
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.24</a></li>
+                  <li><a href="#">2015.9.25</a></li>
+                </ul>
+              </span>
+              
             </div>
-            <button type="submit" class="btn btn-warning btn-lg">Chck user</button>
-          </form>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><a href="http://128.8.215.91:8080/viewer/56080df26bf3665d18f36ddc"><img src="https://raw.githubusercontent.com/DOCQR/web-viewer/master/files/documentation/stories1.JPG" class="img-responsive" style="border: 1px solid #bfbfbf"></a></div>
+          <div class="panel-body">
+            <p class="lead">Retail</p>
+            <p>Users</p>
+            
+            <div>
+              <img src="http://api.randomuser.me/portraits/med/men/4.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/4.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/24.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
 
-          <!-- Add Project FORM -->
-          <form action="/addProject" method="post">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" class="form-control" name="name">
+              <span class="dropup pull-right" >
+                
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">S-1.0
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="http://128.8.215.91:8080/viewer/56080dc06bf3665d18f36dd8">S-1.0: Entry Level</a></li>
+                  <li><a href="http://128.8.215.91:8080/viewer/56080dd36bf3665d18f36dd9">S-1.0: Main Stair</a></li>
+                  <li><a href="http://128.8.215.91:8080/viewer/56080def6bf3665d18f36ddb">S-1.1: Second Floor</a></li>
+                  <li><a href="http://128.8.215.91:8080/viewer/56080deb6bf3665d18f36dda">S-1.1: Area Reinforced</a></li>
+                  <li><a href="http://128.8.215.91:8080/viewer/56080df26bf3665d18f36ddc">S-1.1: Reinforced Beam</a></li>
+                </ul>
+                
+              </span>
+              
             </div>
-            <button type="submit" class="btn btn-warning btn-lg">Add Project</button>
-          </form>
+          </div>
+        </div>
+      </div><!--/col-->
+      
 
-          <!-- Add Users FORM -->
-          <form action="/addUser" method="post">
-            <div class="form-group">
-              <label>Project</label>
-              <select class="form-control" name="project">
-                <% for(var i=0; i<projects.length; i++) {%>
-                  <option value="<%= projects[i]._id %>">
-                    <%= projects[i].name %>
-                  </option>
-                  <% } %>
-                    </ul>
-              </select>
-              <label>User</label>
-              <input type="email" class="form-control" name="email" value="">
-            </div>
-            <button type="submit" class="btn btn-warning btn-lg">Add User</button>
-          </form>
+      
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="https://raw.githubusercontent.com/DOCQR/web-viewer/master/files/documentation/sampleHouse.JPG" class="img-responsive" style="border: 1px solid #bfbfbf"></div>
+          <div class="panel-body">
+            <p class="lead">Building 1</p>
+            <p>Users</p>
+            
+            <div>
+              
+              <img src="http://api.randomuser.me/portraits/med/men/20.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/14.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
 
-          <!-- new model id -->
-          <form action="/projects/56073ef125aac0da278061e5" method="get">
-            <div class="form-group">
+               <span class="dropup pull-right" >
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.27
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.26</a></li>
+                </ul>
+              </span>
+              
             </div>
-            <button type="submit" class="btn btn-warning btn-lg">Get Projects</button>
-          </form>
-          <!-- new model id -->
-          <form action="/newModelID/560797db5084546c1e76d435/" method="post">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" class="form-control" name="name">
-            </div>
-            <button type="submit" class="btn btn-warning btn-lg">Add Model ID</button>
-          </form>
-          <!-- add views -->
-          <form action="/views/560797db5084546c1e76d435/560798035084546c1e76d436/" method="post">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" class="form-control" name="threed">
-            </div>
-            <button type="submit" class="btn btn-warning btn-lg">Add View</utton>
-          </form>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="https://raw.githubusercontent.com/DOCQR/web-viewer/master/files/documentation/samplePavilion.JPG" class="img-responsive" style="border: 1px solid #bfbfbf"></div>
+          <div class="panel-body">
+            <p class="lead">Pavilion</p>
+            <p>Users</p>
+            
+            <div>
+              <img src="http://api.randomuser.me/portraits/med/men/4.jpg" width="28px" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/24.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
 
-          <hr>
+              <span class="dropup pull-right" >
+                
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.27
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.25</a></li>
+                  <li><a href="#">2015.9.26</a></li>
+                </ul>
+                
+              </span>
+              
+            </div>
+          </div>
+        </div>
+      </div><!--/col-->
+      
+      <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="https://raw.githubusercontent.com/DOCQR/web-viewer/master/files/documentation/sampleRoof.JPG" class="img-responsive" style="border: 1px solid #bfbfbf"></div>
+          <div class="panel-body">
+            <p class="lead">Building Roof</p>
+            <p>Users</p>
+            
+            <div>
+              <img src="http://api.randomuser.me/portraits/med/women/4.jpg" height="28px">
+              <img src="http://api.randomuser.me/portraits/med/men/4.jpg" width="28px" height="28px">
+              <span class="glyphicon glyphicon-plus"></span>
 
+              <span class="dropup pull-right" >
+                <button class="btn dropdown-toggle" type="button" style="background-color:white;" data-toggle="dropdown">2015.9.26
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">2015.9.24</a></li>
+                </ul>
+              </span>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+      
+       <div class="col-sm-4 col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-thumbnail"><img src="//placehold.it/450X300?text=%2B" class="img-responsive" style="border: 1px solid #bfbfbf"></div>
+          <div class="panel-body">
+            <p class="lead">New Building</p>
+            
+          </div>
+        </div>
+      </div><!--/col-->
+     
+     
     </div>
+   
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

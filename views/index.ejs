@@ -28,8 +28,7 @@
 
       <div class="collapse navbar-collapse" id="bs-navbar">
         <ul class="nav navbar-nav">
-          <li><a href="#">Projects</a></li>
-          <li><a href="#team">Team</a></li>
+          <li><a href="projects">Projects</a></li>
           <li><a href="https://github.com/docqr">Github</a></li>
 
         </ul>
@@ -97,13 +96,16 @@
   </div>
 
       <div class="row-fluid tagline text-center pagination-centered">
-        <h1 style="padding-top:100px;">View Building Drawings online via QR</h1>
+        <div class="text-center">
+            <img style="padding-top:100px;" src="https://raw.githubusercontent.com/DOCQR/web-viewer/master/files/documentation/DocQR_Logo_Full.png" style="padding:5px">
+        </div>
+        <h1 >View Building Documents online via QR</h1>
         <p>Visualize building construction docs and sheets online by scanning a QR Code. &nbsp;
           <br> This project was developed September 2015 at the AEC Technology Symposium + Hackathon in New York City.
         </p>
 
         <div style="padding:25px">
-          <a class="btn btn-primary btn-lg pagination-centered" href="#" title="The original prize-winning entry">Get Started</a>
+          <button class="btn btn-primary btn-lg pagination-centered" href="#" title="The original prize-winning entry" data-toggle="modal" data-target="#myModal">Sign Up</button>
         </div>
 
       </div>
@@ -113,16 +115,16 @@
 
       <div class="row">
         <div class="col-md-4 text-center">
-          <a href="#">
+            <a href="https://github.com/DOCQR/web-viewer/tree/master/files/sampleFiles"><img src="images/drawing.png" width="150px" style="padding:5px"></a>
             <img src="images/drawing.png" width="150px" style="padding:5px">
           </a>
-          <h3>Building Drawing</h3>
+          <h3>Building Document</h3>
           <p>Publish from Revit</p>
           <br>
         </div>
         <div class="col-md-4 text-center">
           <a href="#">
-            <img src="images/qr.png" width="150px" style="padding:20px">
+           <a href="http://www.whatisaqrcode.co.uk/"><img src="images/qr.png" width="150px" style="padding:20px"></a>
           </a>
           <h3>QR Code</h3>
           <p>Take Photo or Go to URL</p>
@@ -130,7 +132,7 @@
         </div>
         <div class="col-md-4 text-center">
           <a href="#">
-            <img src="images/browser.png" width="150px" style="padding:21px">
+          <a href="http://core.thorntontomasetti.com/apps/Spectacles/Viewer/"><img src="images/browser.png" width="150px" style="padding:21px"></a>
           </a>
           <h3>Web Viewer</h3>
           <p>View 3D Model & 2D Sheets</p>
@@ -149,7 +151,7 @@
           by quickly scanning a QR code and viewing the wider building context in your browser
         </p>
 
-        <a class="btn btn-primary btn-lg pagination-centered" href="#" title="The original prize-winning entry">Example Drawings</a>
+        <a class="btn btn-primary btn-lg pagination-centered" href='http://docqr.github.io/projects.html' title="The original prize-winning entry">Example Projects</a>
       </div>
 
       <hr>
@@ -200,6 +202,7 @@
                   <td>University of Maryland</td>
                   <td>Web Viewer</td>
                 </tr>
+                <tr><td>Irmak Turan</td><td>MIT</td><td>Logo</td></tr>
 
               </tbody>
             </table>
@@ -221,6 +224,8 @@
 
         <p class="text-center">
           <a href="https://github.com/DOCQR/docqr.github.io/blob/master/LICENSE" target="_blank">Open Source MIT License</a> &nbsp; | &nbsp; Special thanks to the open source software that made DOCQR possible:&nbsp;
+           <a href="http://core.thorntontomasetti.com/apps/Spectacles/" target="_blank">Spectacles</a>
+           &nbsp; | &nbsp;
           <a href="https://github.com/mrdoob/three.js/blob/master/LICENSE" target="_blank">Three.js</a> &nbsp; | &nbsp;
           <a href="https://github.com/github" target="_blank">GitHub</a> &nbsp; | &nbsp;
           <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">Bootstrap</a> &nbsp; | &nbsp;
@@ -229,6 +234,30 @@
 
 
       </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sign Up</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form" id="formLogin2" action="/login" method="post"> 
+                  <div class="form-group" style="min-width:250px"><input type="name" class="form-control" id="name" name="name" placeholder="Name"></div>
+                  <div class="form-group" style="min-width:250px"><input type="email" class="form-control" id="email" name="email" placeholder="Email"></div>
+                  <div class="form-group" style="min-width:250px"><input type="password" class="form-control" id="password" placeholder="Password"></div>
+                  <button type="submit" class="btn btn-default btn-block">Sign Up</button>
+                  
+                </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
