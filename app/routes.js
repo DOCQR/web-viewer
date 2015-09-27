@@ -1,5 +1,4 @@
 var Project = require('./models/project.js').Project;
-var Models = require('./models/project.js').Models;
 var Model = require('./models/project.js').Model;
 var User = require('./models/user.js');
 module.exports = function(app, passport) {
@@ -11,7 +10,7 @@ module.exports = function(app, passport) {
     res.render('index.ejs', {
       message: req.flash('signupMessage')
     });
-    
+
   });
 
   // PROFILE SECTION =========================
