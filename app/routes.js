@@ -1,5 +1,4 @@
 var Project = require('./models/project.js').Project;
-var Models = require('./models/project.js').Models;
 var Model = require('./models/project.js').Model;
 var User = require('./models/user.js');
 module.exports = function(app, passport) {
@@ -9,9 +8,10 @@ module.exports = function(app, passport) {
   // show the home page (will also have our login links)
   app.get('/', function(req, res) {
     res.render('index.ejs', {
-      message: req.flash('signupMessage')
+      message: req.flash('signupMessage'),
+      user: req.user
     });
-    
+
   });
 
     // WEB VIEWER =============================

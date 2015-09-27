@@ -44,6 +44,7 @@ module.exports = function(passport) {
           'local.email': email
         }, function(err, user) {
           // if there are any errors, return the error
+          console.log(user);
           if (err)
             return done(err);
 
