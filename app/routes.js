@@ -170,6 +170,7 @@ module.exports = function(app, passport) {
     newView.model = req.params.modelID;
     newView.project = req.params.projectID;
     newView.save(function(err) {
+      console.log(err);
       console.log("New View ", newView._id);
       res.json(newView._id);
     });
